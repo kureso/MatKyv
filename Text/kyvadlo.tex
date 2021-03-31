@@ -1,0 +1,89 @@
+\documentclass[reqno, a4paper]{amsart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% PAGE DIMENSION
+\usepackage[scale=0.9]{geometry}
+
+% BIBLIOGRAPHY
+\usepackage[authoryear]{natbib}
+\usepackage{bibentry} % inline refereces
+
+% ENCODING, LANGUAGE
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% GRAPHICS
+\usepackage{subfig}
+\usepackage{graphicx}
+
+% HYPERTEXT, SOURCE CODE SPECIALS
+\usepackage[unicode]{hyperref}
+\usepackage[active]{srcltx} % use TeX-souce-specials-mode
+
+% SYMBOLS, FONTS
+\usepackage{mathbbol}
+\usepackage{bm} % sophisticated \boldsymbol
+%\usepackage{stmaryrd}
+\usepackage{MnSymbol} % \lsem, \rsem, tensor product :
+\usepackage{gensymb}
+\usepackage{eurosym}
+
+% UNITS, TYPESETTING TENSORS
+\usepackage{units}
+\usepackage{tensor}
+\usepackage{accents}
+
+% COMPACT LIST ENVIRONMENT
+\usepackage{enumitem}
+
+% LINE NUMBERS
+\usepackage{lineno}
+
+% TABLE OF CONTENTS IN TWO COLUMNS
+% \usepackage[toc]{multitoc} % It seems that it does not work with amsart
+% the workaround is the command
+% \addtocontents{toc}{\protect\begin{multicols}{2}} % workaround for table of contents in two columns in amsart documentclass
+% see below
+\usepackage{multicol}
+
+% TODO NOTES
+\usepackage{todonotes}
+
+\numberwithin{equation}{section}
+\let\cite\citet
+\newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
+
+\input{macros}
+
+\title[Matematické kyvadlo]{Matematické kyvadlo}
+
+\author{Ondrej Kureš, Marek Mikloš, Ladislav Trnka}
+
+\begin{document}
+
+\begin{abstract}
+TADY BUDE ABSTRAKT-
+\end{abstract}
+
+\maketitle
+
+\addtocontents{toc}{\protect\begin{multicols}{2}} % workaround for table of contents in two columns in amsart documentclass
+\tableofcontents
+
+%\linenumbers
+
+\input{kyvadlo-body}
+
+%\bibliographystyle{chicago}
+%\bibliographystyle{custom}
+%\bibliography{vit-prusa}
+
+\addtocontents{toc}{\protect\end{multicols}} % workaround for table of contents in two columns in amsart documentclass
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

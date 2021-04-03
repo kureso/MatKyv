@@ -27,7 +27,7 @@ Kde jsme vzali jen první člen, neboť nás zajímají jen malé výchylky.
 \section{Numerické řešení}
 \label{sec:Numerické řešení}
 
-V předchozích kapitolách jsme dospěli k rovnici $\eqref{pohyb}$. Kvůli jednotě značení v této sekci ji přepišme jako:
+V předchozích kapitolách jsme dospěli k rovnici $\eqref{pohyb}$. Vzhledem k jednotě značení v této sekci ji přepišme jako:
 \begin{equation}
 \label{rovnice}
 \boxed{\frac{\diff^{2} y}{\diff t ^{2}} + \frac{g}{l}\sin y=0},
@@ -62,7 +62,7 @@ a to v každém čase $t$. Při hodnocení numerických metod je pro nás výhod
 \subsection{Metody}
 \label{sec:Metody}
 
-Na příkladech numerických řešení rovnice $\eqref{rovnice}$ si ukážeme úskalí používání numerických metod při konfrontaci se zachováním periodicity a při zachováním energie apod. 
+Na příkladech numerických řešení rovnice $\eqref{rovnice}$ si ukážeme úskalí používání numerických metod při konfrontaci se zachováním periodicity a při zachování energie apod. 
 
 \begin{description}
 \item[Automatická metoda zvolená softwarem] Podívejme se na řešení s automatickým výběrem metody v příkazu \texttt{NDSolve}:
@@ -136,15 +136,15 @@ Výsledné numerické řešení naprosto ztrácí periodicitu - obrázek $\eqref
 \item[Metody snažící se zachovat celkovou energii] 
 Nyní použijeme sofistikovanější metody založené na Runge-Kuttových metodách. Pro ilustraci napišme explicitní Runge-Kuttovu metodu 4. řádu (zachováme značení jako výše) pro rovnici~$y'(t)=f(t,y(t))$:
 \begin{align*}
-K_{1} & = f(t_{n},y_{n}) \\
-K_{2} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{1}}{2} \right)  \\
-K_{3} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{2}}{2} \right)  \\
+K_{1} & = f(t_{n},y_{n}), \\
+K_{2} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{1}}{2} \right),  \\
+K_{3} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{2}}{2} \right) , \\
 K_{4} & = f(t_{n}+h,y_{n}+h K_{3}) \\
-y_{n+1} & = y_{n}+\frac{1}{6}(K_{1}+2K_{2}+2K_{3}+K_{4})\\
+y_{n+1} & = y_{n}+\frac{1}{6}(K_{1}+2K_{2}+2K_{3}+K_{4}).\\
 \end{align*}
 
 Konkrétně použijeme metodu \texttt{SymplecticPartitionedRungeKutta}, která ovšem vyžaduje přejít do Hamiltonova formalismu:
-\begin{lstlisting}[language=Mathematica,caption=Hamiltonův formalizsmus]
+\begin{lstlisting}[language=Mathematica,caption=Hamiltonův formalismus]
 H = p[t]^2/2 - g/l *Cos[q[t]];
 eqs = {p'[t] == -D[H, q[t]], q'[t] == D[H, p[t]]};
 ics = {p[0] == 0, q[0] == poc};

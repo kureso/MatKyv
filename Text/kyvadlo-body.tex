@@ -82,7 +82,7 @@ Na obrázku $\eqref{fig:ND1}$ vidíme periodicitu řešení. Z $\eqref{fig:ND2}$
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5cm]{figures/ND2.eps}
+  \includegraphics[width=3cm]{figures/ND2.eps}
   \caption{Fázový prostor}
   \label{fig:ND2}
 \end{figure}
@@ -90,7 +90,7 @@ Na obrázku $\eqref{fig:ND1}$ vidíme periodicitu řešení. Z $\eqref{fig:ND2}$
 \begin{figure}[h]
   \centering
   \includegraphics[width=15cm]{figures/ND3.eps}
-  \caption{Rovnosti v rovnici $\eqref{ener}$}
+  \caption{Zachování energie - rovnice $\eqref{ener}$}
   \label{fig:ND3}
 \end{figure}
 
@@ -100,7 +100,7 @@ Tato metoda je nejjednodušší a zároveň, jak si ukážeme, nejméně vhodná
 \begin{equation*}
 t_{n} = n h , n \in \mathbb{N_{0}}
 \end{equation*}
-kde $h$ je velikost kroku. Dále aproximujme $y(t_{n}) \approx y_{n}$. Pak explicitní Eulerova metoda (jednokroková) pro rovnici $y'(t)=f(t,y(t))$\footnote{předpokládáme existenci řešení} se dá vyjádřit jako\footnote{v našem případě ODR 2. řádu bychom převedli na soustavu ODR 1. řádu}:
+kde $h$ je velikost kroku. Dále aproximujme $y(t_{n}) \approx y_{n}$. Pak explicitní Eulerova metoda (jednokroková) pro rovnici\footnote{předpokládáme existenci řešení} $y'(t)=f(t,y(t))$ se dá vyjádřit jako\footnote{v našem případě ODR 2. řádu bychom převedli na soustavu ODR 1. řádu}:
 \begin{equation*}
 y_{n+1} = y_{n} + h f(t_{n},y_{n})
 \end{equation*}
@@ -109,7 +109,7 @@ Pro demonstraci získání "špatného" výsledku použijme:
 NDSolve[{y''[t]+g/l*Sin[y[t]] == 0,y[0] == poc,y'[0] == 0},y, time, Method -> "ExplicitEuler", StartingStepSize -> 0.1,MaxStepSize -> 0.1, MaxSteps -> 100]
 \end{lstlisting}
 
-Výsledné numerické řešení nezachovává ani periodicitu $\eqref{fig:EU1}$ ani energii $\eqref{fig:EU2}$ a $\eqref{fig:EU3}$ - systém energii v čase získává.
+Výsledné numerické řešení naprosto ztrácí periodicitu $\eqref{fig:EU1}$ a nezachovává energii $\eqref{fig:EU2}$, $\eqref{fig:EU3}$ - systém energii v čase získává.
 
 
 \begin{figure}[h]
@@ -129,21 +129,21 @@ Výsledné numerické řešení nezachovává ani periodicitu $\eqref{fig:EU1}$ 
 \begin{figure}[h]
   \centering
   \includegraphics[width=15cm]{figures/EU3.eps}
-  \caption{Eulerova metoda - rovnosti v rovnici $\eqref{ener}$}
+  \caption{Eulerova metoda - energie}
   \label{fig:EU3}
 \end{figure}
 
-
 \item[Metody snažící se zachovat celkovou energii] 
-Nyní použijeme sofistikovanější metody založené na Runge-Kuttových metodách. Pro ilustraci napišme explicitní Runge-Kuttovu metodu 4.řádu (zachováme značení jako výše):
+Nyní použijeme sofistikovanější metody založené na Runge-Kuttových metodách. Pro ilustraci napišme explicitní Runge-Kuttovu metodu 4. řádu (zachováme značení jako výše) pro rovnici~$y'(t)=f(t,y(t))$:
 \begin{align*}
 K_{1} & = f(t_{n},y_{n}) \\
-K_{2} & = f(t_{n},y_{n}) \\
-K_{3} & = f(t_{n},y_{n}) \\
-K_{4} & = f(t_{n},y_{n}) \\
+K_{2} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{1}}{2} \right)  \\
+K_{3} & = f \left(  t_{n}+\frac{h}{2},y_{n}+h\frac{K_{2}}{2} \right)  \\
+K_{4} & = f(t_{n}+h,y_{n}+h K_{3}) \\
+y_{n+1} & = y_{n}+\frac{1}{6}(K_{1}+2K_{2}+2K_{3}+K_{4})\\
 \end{align*}
-Konkrétně použijeme metodu \texttt{SymplecticPartitionedRungeKutta
-}, která ovšem vyžaduje přejít do Hamiltonova formalismu:
+
+Konkrétně použijeme metodu \texttt{SymplecticPartitionedRungeKutta}, která ovšem vyžaduje přejít do Hamiltonova formalismu:
 \begin{lstlisting}[language=Mathematica,caption=Hamiltonův formalizsmus]
 H = p[t]^2/2 - g/l *Cos[q[t]];
 eqs = {p'[t] == -D[H, q[t]], q'[t] == D[H, p[t]]};
@@ -152,15 +152,40 @@ vars = {q[t], p[t]};
 \end{lstlisting}
 Máme časově nezávislý hamiltonián - zachovává se v čase (integrál pohybu):
 \begin{equation}
-H = \frac{p^{2}}{2m} -\frac{g}{l} m \cos(q)
+H = \frac{p^{2}}{2m} -\frac{g}{l} m \cos(q).
 \end{equation}
 Implementace metody:
 \begin{lstlisting}[language=Mathematica]
 NDSolve[{eqs, ics}, vars, time,Method ->{"SymplecticPartitionedRungeKutta","DifferenceOrder" -> 2, "PositionVariables" -> {q[t]}}];
 \end{lstlisting}
 
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=12cm]{figures/SymRK2.eps}
+%  \caption{fázový prostor}
+%\end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=15cm]{figures/SymRK3.eps}
+  \caption{Metoda \texttt{SymplecticPartitionedRungeKutta}}
+  \label{fig:sprg}
+\end{figure}
 
+Řešení $\eqref{fig:sprg}$ též zachovává energii s přesností $10^{-5}$ jako první metoda.
+
+Pro porovnání zkusme ještě malinko jiný přístup pomocí \texttt{Projection}:
+\begin{lstlisting}[language=Mathematica]
+NDSolve[{y''[t] + g/l *Sin[y[t]] == 0, y[0] == poc,y'[0] == 0}, y, time,  Method -> {"Projection", Method -> "ExplicitRungeKutta", "Invariants" -> -g/l *Cos[poc]}];
+\end{lstlisting}
+Ale nějakého výrazného zlepšení již s touto metodou nedocílíme $\eqref{fig:proj3}$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=15cm]{figures/Proj3.eps}
+  \caption{Projekce}
+  \label{fig:proj3}
+\end{figure}
 
 
 \end{description}

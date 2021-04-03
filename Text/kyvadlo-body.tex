@@ -96,20 +96,20 @@ Na obrázku $\eqref{fig:ND1}$ vidíme periodicitu řešení. Z $\eqref{fig:ND2}$
 
 \item[Explicitní Eulerova metoda] 
 
-Tato metoda je nejjednodušší a zároveň, jak si ukážeme, nejméně vhodná pro numerické řešení rovnice $\eqref{rovnice}$. Proto si ji pro ilustraci rozeberme trochu více. Mějme rovnoměrné (ekvidistantní) dělení $\left\lbrace t_{n} \right\rbrace $ intervalu $(0,10)$:
+Tato metoda je nejjednodušší a zároveň, jak si ukážeme, nejméně vhodná pro numerické řešení rovnice $\eqref{rovnice}$. Proto si ji pro ilustraci rozeberme trochu podrobněji. Mějme rovnoměrné (ekvidistantní) dělení $\left\lbrace t_{n} \right\rbrace $ intervalu $(0,10)$:
 \begin{equation*}
-t_{n} = n h , n \in \mathbb{N_{0}}
+t_{n} = n h , n \in \mathbb{N_{0}},
 \end{equation*}
 kde $h$ je velikost kroku. Dále aproximujme $y(t_{n}) \approx y_{n}$. Pak explicitní Eulerova metoda (jednokroková) pro rovnici\footnote{předpokládáme existenci řešení} $y'(t)=f(t,y(t))$ se dá vyjádřit jako\footnote{v našem případě ODR 2. řádu bychom převedli na soustavu ODR 1. řádu}:
 \begin{equation*}
-y_{n+1} = y_{n} + h f(t_{n},y_{n})
+y_{n+1} = y_{n} + h f(t_{n},y_{n}).
 \end{equation*}
 Pro demonstraci získání "špatného" výsledku použijme:
 \begin{lstlisting}[language=Mathematica,caption=Eulerova metoda]
 NDSolve[{y''[t]+g/l*Sin[y[t]] == 0,y[0] == poc,y'[0] == 0},y, time, Method -> "ExplicitEuler", StartingStepSize -> 0.1,MaxStepSize -> 0.1, MaxSteps -> 100]
 \end{lstlisting}
 
-Výsledné numerické řešení naprosto ztrácí periodicitu $\eqref{fig:EU1}$ a nezachovává energii $\eqref{fig:EU2}$, $\eqref{fig:EU3}$ - systém energii v čase získává.
+Výsledné numerické řešení naprosto ztrácí periodicitu - obrázek $\eqref{fig:EU1}$ a nezachovává energii $\eqref{fig:EU2}$, $\eqref{fig:EU3}$ - systém energii v čase získává.
 
 
 \begin{figure}[h]
@@ -172,13 +172,13 @@ NDSolve[{eqs, ics}, vars, time,Method ->{"SymplecticPartitionedRungeKutta","Diff
   \label{fig:sprg}
 \end{figure}
 
-Řešení $\eqref{fig:sprg}$ též zachovává energii s přesností $10^{-5}$ jako první metoda.
+Řešení dle obrázku $\eqref{fig:sprg}$ též zachovává energii s přesností $10^{-5}$ jako první metoda.
 
-Pro porovnání zkusme ještě malinko jiný přístup pomocí \texttt{Projection}:
+Pro porovnání zkusme ještě jiný přístup pomocí \texttt{Projection}:
 \begin{lstlisting}[language=Mathematica]
 NDSolve[{y''[t] + g/l *Sin[y[t]] == 0, y[0] == poc,y'[0] == 0}, y, time,  Method -> {"Projection", Method -> "ExplicitRungeKutta", "Invariants" -> -g/l *Cos[poc]}];
 \end{lstlisting}
-Ale nějakého výrazného zlepšení již s touto metodou nedocílíme $\eqref{fig:proj3}$.
+Ale nějakého výrazného zlepšení, již s touto metodou nedocílíme $\eqref{fig:proj3}$.
 
 \begin{figure}[h]
   \centering

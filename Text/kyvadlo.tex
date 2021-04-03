@@ -51,11 +51,28 @@
 % TODO NOTES
 \usepackage{todonotes}
 
+% TABLES
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{tabularx}
+
+% SOURCE CODE LISTINGS
+\usepackage{listings}
+%\usepackage{minted}
+\usepackage{xcolor}
+
+% IMPORT CSV files
+\usepackage{csvsimple}
+
+% NUMBERS
+%\usepackage{numprint}
+
 \numberwithin{equation}{section}
 \let\cite\citet
 \newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
 
 \input{macros}
+\input{listings-style}
 
 \title[Matematické kyvadlo]{Matematické kyvadlo}
 

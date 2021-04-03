@@ -156,7 +156,7 @@ H = \frac{p^{2}}{2m} -\frac{g}{l} m \cos(q).
 \end{equation}
 Implementace metody:
 \begin{lstlisting}[language=Mathematica]
-NDSolve[{eqs, ics}, vars, time,Method ->{"SymplecticPartitionedRungeKutta","DifferenceOrder" -> 2, "PositionVariables" -> {q[t]}}];
+NDSolve[{eqs, ics}, vars, time,Method ->{"SymplecticPartitionedRungeKutta","DifferenceOrder" -> 4, "PositionVariables" -> {q[t]}}];
 \end{lstlisting}
 
 %\begin{figure}[h]
@@ -165,27 +165,21 @@ NDSolve[{eqs, ics}, vars, time,Method ->{"SymplecticPartitionedRungeKutta","Diff
 %  \caption{fázový prostor}
 %\end{figure}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=15cm]{figures/SymRK3.eps}
-  \caption{Metoda \texttt{SymplecticPartitionedRungeKutta}}
-  \label{fig:sprg}
-\end{figure}
-
-Řešení dle obrázku $\eqref{fig:sprg}$ též zachovává energii s přesností $10^{-5}$ jako první metoda.
-
 Pro porovnání zkusme ještě jiný přístup pomocí \texttt{Projection}:
 \begin{lstlisting}[language=Mathematica]
 NDSolve[{y''[t] + g/l *Sin[y[t]] == 0, y[0] == poc,y'[0] == 0}, y, time,  Method -> {"Projection", Method -> "ExplicitRungeKutta", "Invariants" -> -g/l *Cos[poc]}];
 \end{lstlisting}
-Ale nějakého výrazného zlepšení, již s touto metodou nedocílíme $\eqref{fig:proj3}$.
+
+
+V tabulce $\eqref{fig:tab}$ je porovnání všech použitých metod (vyjma Eulerovy metody). Nejlépe z použitých metod vychází \texttt{SymplecticRungeKutta}, která zachovává energii s přesností $10^{-6}$. Automaticky vybraná metoda při příkazu \texttt{NDSolve} zachovává energii s přesností $10^{-5}$. Posledně zmíněná metoda \texttt{Projection} zachovává energii s přesností $10^{-3}$ tedy s menší přesností než první dvě metody.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=15cm]{figures/Proj3.eps}
-  \caption{Projekce}
-  \label{fig:proj3}
+  \includegraphics[width=10cm]{figures/TAB1.eps}
+  \caption{Porovnání metod podle energií v čase}
+  \label{fig:tab}
 \end{figure}
+
 
 
 \end{description}

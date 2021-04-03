@@ -3,7 +3,7 @@
 
 Matematické kyvadlo je nejjednodušším typem kyvadla. Máme hmotný bod o hmotnosti $m$ zavěšený na provázku délky $l$ zanedbatelné hmotnosti. Tření a odpor vzduchu nezapočítáváme. Tíhové pole považujeme za homogenní s tíhovým zrychlením $g$.
 
-\section{Pohybová rovnice}
+\subsection*{Pohybová rovnice}
 \label{sec:Pohybová rovnice}
 Teď se podíváme na pohybovou rovnici. Hmotný bod se pohybuje po kružnici o poloměru $l$ a jeho pohyb popisujeme aktuálním úhlem $\varphi(t)$, který měří výchylku z dolní rovnovážné polohy. Pro zrychlení platí $a=l\varepsilon=l\dot{\omega}=l\ddot{\varphi}$ a pro vratnou sílu platí $F=-mg\sin\varphi$. Teď použijeme 2. Newtonův zákon: $F=ma$.
 \begin{equation*}
@@ -23,6 +23,49 @@ Využili jsme Taylorova rozvoje $\sin\varphi$:
 \sin\varphi = \varphi-\frac{\varphi^3}{6}+\frac{\varphi^5}{120}+O\left(\varphi^6\right)
 \end{equation*}
 Kde jsme vzali jen první člen, neboť nás zajímají jen malé výchylky.
+
+\section{Perioda oscilací}
+\label{sec:Perioda oscilací}
+
+\subsection{Eliptický integrál}
+\label{sec:Eliptický integrál}
+Eliptický integrál nám poskytuje exaktní řešení nelinearizované rovnice ($\ref{pohyb}$). Když rovnici ($\ref{pohyb}$) vynásobíme $\frac{d\varphi}{dt}$ tak dostaneme
+\begin{equation*}
+\frac{d\varphi}{dt}\left(\ddot{\varphi}+\frac{g}{l}\sin\varphi\right)=\frac{d}{dt}\left(\frac{1}{2}\dot{\varphi}^2-\frac{g}{l}\cos\varphi\right)=0
+\end{equation*}
+Dostáváme první integrál pohybu pohybové rovnice ($\ref{pohyb}$)
+\begin{equation}
+\frac{1}{2}\dot{\varphi}^2-\frac{g}{l}\cos\varphi=C
+\end{equation}
+Protože chceme, aby kyvadlo mělo na počátku nulovou rychlost ($\dot{\varphi}=0$, pro $\varphi=\varphi_0$, kde $\varphi_0$ je počáteční úhel), můžeme dopočítat konstantu $C$, což nám dává $C=-\frac{g}{l}\cos\varphi_0$. Tak získáváme
+\begin{equation}
+\label{intpohyb}
+\dot{\varphi}=\frac{d\varphi}{dt}=\sqrt{\frac{2g}{l}}\sqrt{\cos\varphi-\cos\varphi_0}.
+\end{equation}
+Využijeme větu o derivaci inverzní funkce na ($\ref{intpohyb}$) a vynásobíme ji $d\varphi$
+\begin{equation}
+dt=\frac{d\varphi}{\sqrt{\frac{2g}{l}}\sqrt{\cos\varphi-\cos\varphi_0}}.
+\end{equation}
+Budeme integrovat od $\varphi=0$ do $\varphi=\varphi_0$. Tento interval odpovídá čtvrtině periody.
+\begin{equation}
+\frac{T}{4}=\int_{0}^{\varphi_0}\frac{\,d\varphi}{\sqrt{\frac{2g}{l}}\sqrt{\cos\varphi-\cos\varphi_0}}.
+\end{equation}
+Pomocí substituce $\cos\varphi=1-2\sin^2\theta$ ($\theta=\frac{\varphi}{2}$) a dalších úprav, získáváme
+\begin{equation}
+\label{integ}
+T=4\sqrt{\frac{l}{g}}\int_{0}^{\frac{\pi}{2}}\frac{\,d\theta}{\sqrt{1-k^2\sin^2\theta}},
+\end{equation}
+kde $k=\sin\frac{\varphi_0}{2}$.
+Uděláme Taylorův rozvoj $\frac{1}{\sqrt{1-k^2\sin^2\theta}}$, abychom si usnadnili práci s integrálem.
+\begin{equation}
+\label{rozvoj}
+\frac{1}{\sqrt{1-k^2\sin^2\theta}}\approx1+\frac{1}{8} \varphi_0 ^2 \sin ^2\theta+\frac{1}{384} \varphi_0 ^4 \left(9 \sin ^4\theta-4 \sin
+   ^2\theta \right)
+\end{equation}
+Teď už jen ($\ref{rozvoj}$) vložíme do ($\ref{integ}$) a dostaneme
+\begin{equation}
+T=4\sqrt{\frac{l}{g}}\int_{0}^{\frac{\pi}{2}}\frac{\,d\theta}{\sqrt{1-k^2\sin^2\theta}}\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{1}{16}\varphi_0^2+\frac{11}{3072}\varphi_0^4\right).
+\end{equation}
 
 \section{Numerické řešení}
 \label{sec:Numerické řešení}

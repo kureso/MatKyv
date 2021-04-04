@@ -235,23 +235,27 @@ Periodu matematického kyvadla $T$ určíme jako čtyřnásobek času, za který
 \label{aproxperiod}
 T= 2 \pi \sqrt{\frac{l}{g}} \left( 1 + \frac{y_{0}^{2}}{16} + \frac{11y_{0}^{2}}{3072} \right) .
 \end{equation}
-Pro porovnání budeme periodu určovat při různých počátečních výchylkách $y_{0}$.
+Pro porovnání budeme periodu určovat při různých počátečních výchylkách $y_{0}$ a dodejme ještě velikost periody pro linearizovanou rovnici:
+\begin{equation}
+\label{aproxperiod}
+T= 2 \pi \sqrt{\frac{l}{g}}.
+\end{equation}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=15cm]{figures/PER-TAB.eps}
+  \includegraphics[width=17cm]{figures/perTab.pdf}
   \caption{Velikost periody $T$ pro různé metody v závislosti na počáteční výchylce $y_{0}$}
   \label{fig:pertab}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=17cm]{figures/PER2.eps}
+  \includegraphics[width=17cm]{figures/PER2+LIN.eps}
   \caption{Velikost periody $T$ pro různé metody v závislosti na počáteční výchylce $y_{0}$}
   \label{fig:per}
 \end{figure}
 
-Z obrázku $\eqref{fig:per}$ a z tabulky $\eqref{fig:pertab}$ je patrné, že Eulerova metoda se výrazně odlišuje od zbylých. Metody \texttt{NDSolve} a \texttt{SymplecticPartitionedRungeKutta} jsou velmi přesné, překvapivě aproximace periody $\eqref{aproxperiod}$ je také poměrně přesná, ale při vyšších počátečních výchylkách ztrácí na přesnosti.
+Z obrázku $\eqref{fig:per}$ a z tabulky $\eqref{fig:pertab}$ je patrné, že Eulerova metoda se výrazně odlišuje od zbylých. Metody \texttt{NDSolve} a \texttt{SymplecticPartitionedRungeKutta} jsou velmi přesné, překvapivě aproximace periody $\eqref{aproxperiod}$ je také poměrně přesná, ale při vyšších počátečních výchylkách ztrácí na přesnosti. Určení periody z linearizované rovnice je možné jen pro malé počáteční výchylky řádově 0.001 \si{rad}, při vyšších výchylkách rychle ztrácí na přesnosti.
 
 
 

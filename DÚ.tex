@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{{\Huge Matematické kyvadlo}}
+\author{Ondřej Kureš, Marek Mikloš a Ladislav Trnka\\
+Skupina A}
+\date{}
+\begin{document}
+\section{Perturbačná metóda pre nelineárne rovnice}
+Na problém sa môžeme pozrieť aj z iného hľaďiska. Môžeme sa pokúsiť rozšíriť nelineárny člen v equation1.1 pomocou Taylorovho rozvoja
+\begin{equation}
+\label{eq:1}
+  \sin \theta  = \sum_{n=1}^{+\infty} (-1)^n \frac{\theta^{2n+1}}{(2k + 1)!} \approx \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} + \cdots
+\end{equation}
+a následne vyriešiť odpovedajúcu nelineárnu diferenciálnu rovnicu. Touto aproximáciou nám funkciu $\sin \theta $ nahradí polynomiálna funkcia. Výhodou je, že sa nám bude lepšie pracovať s polynomiálnou funkciou.
+Ďalej treba podotknúť, že nelineárne členy v rozvoji \eqref{eq:1}, nie sú tak dôležité ako členy nižších stupňov. Otázkou je, ako vybrať parameter, ktorý by bol dostatočne "malý". V našom prípade bude týmto parametrom amplitúda oscilácií. Postup je nasledovný. Ak uvažujeme počiatočné podmienky v rovnici equation3.1 
+
+
+\begin{subequations}
+\begin{equation}
+\label{eq:2}
+	\frac{d \theta}{dt}\right|_{t=0} = x^2 + x
+\end{equation}
+
+
+\begin{equation}
+\label{eq:3}
+	\frac{d \theta}{dt}\right|_{t=0} = x^2 + x
+\end{equation}
+\end{subequations}
+
+
+
+
+\end{document}

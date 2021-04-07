@@ -3,9 +3,9 @@
 
 Matematické kyvadlo je nejjednodušším typem kyvadla. Máme hmotný bod o hmotnosti $m$ zavěšený na provázku délky $l$ zanedbatelné hmotnosti. Tření a odpor vzduchu nezapočítáváme. Tíhové pole považujeme za homogenní s tíhovým zrychlením $g$.
 
-\subsection*{Pohybová rovnice}
+\subsection{Pohybová rovnice}
 \label{sec:Pohybová rovnice}
-Teď se podíváme na pohybovou rovnici. Hmotný bod se pohybuje po kružnici o poloměru $l$ a jeho pohyb popisujeme aktuálním úhlem $\varphi(t)$, který měří výchylku z dolní rovnovážné polohy. Pro zrychlení platí $a=l\varepsilon=l\dot{\omega}=l\ddot{\varphi}$ a pro vratnou sílu platí $F=-mg\sin\varphi$. Teď použijeme 2. Newtonův zákon: $F=ma$.
+Hmotný bod se pohybuje po kružnici o poloměru $l$ a jeho pohyb popisujeme aktuálním úhlem $\varphi(t)$, který měří výchylku z dolní rovnovážné polohy. Pro zrychlení platí $a=l\varepsilon=l\dot{\omega}=l\ddot{\varphi}$ a pro vratnou sílu platí $F=-mg\sin\varphi$. Použijeme 2. Newtonův zákon: $F=ma$.
 \begin{equation*}
 ma=ml\ddot{\varphi}=F=-mg\sin\varphi\\
 \end{equation*}
@@ -16,18 +16,33 @@ Můžeme pokrátit $m$ z naší rovnice a vydělíme celou rovnici $l$. Pak vše
 \end{equation}
 Vidíme, že naše rovnice je nelineární diferenciální rovnice druhého řádu. Pokud budeme brát v úvahu jen malé výchylky z rovnovážné polohy, můžeme rovnici linearizovat.
 \begin{equation}
+\label{linrce}
 \ddot{\varphi}+\frac{g}{l}\varphi=0
 \end{equation}
 Využili jsme Taylorova rozvoje $\sin\varphi$:
 \begin{equation*}
 \sin\varphi = \varphi-\frac{\varphi^3}{6}+\frac{\varphi^5}{120}+O\left(\varphi^6\right).
 \end{equation*}
-Kde jsme vzali jen první člen, neboť nás zajímají jen malé výchylky.
+Kde jsme vzali jen první člen, neboť nás zajímají jen malé výchylky. Když vezmeme počáteční podmínku $\varphi(t_0=0)=\varphi_0$, tak řešení rovnice ($\ref{linrce}$) vypadá takto
+\begin{equation}
+\label{reslinrce}
+\varphi=\varphi_0\cos\sqrt{\frac{g}{l}}t.
+\end{equation}
+Jak můžeme vidět, rovnice ($\ref{reslinrce}$) odpovídá rovnici harmonického oscilátoru s amplitudou $\varphi_0$ a s úhlovou frekvencí malých harmonických kmitů $\omega = \sqrt{\frac{g}{l}}$.
+Periodě matematického kyvadla při malých výchylkách pak odpovídá
+\begin{equation}
+\label{malperiod}
+T=2\pi\sqrt{\frac{l}{g}}.
+\end{equation}
 
-\section{Perioda oscilací}
-\label{sec:Perioda oscilací}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=8cm]{figures/KYVADLO.eps}
+  \caption{Matematické kyvadlo}
+  \label{fig:per}
+\end{figure}
 
-\subsection{Eliptický integrál}
+\section{Eliptický integrál}
 \label{sec:Eliptický integrál}
 Eliptický integrál nám poskytuje exaktní řešení nelinearizované rovnice ($\ref{pohyb}$). Když rovnici ($\ref{pohyb}$) vynásobíme $\frac{d\varphi}{dt}$, tak získáme:
 \begin{equation*}
@@ -67,7 +82,11 @@ Teď už jen ($\ref{rozvoj}$) vložíme do ($\ref{integ}$) a dostaneme:
 T=4\sqrt{\frac{l}{g}}\int_{0}^{\frac{\pi}{2}}\frac{\,d\theta}{\sqrt{1-k^2\sin^2\theta}}\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{1}{16}\varphi_0^2+\frac{11}{3072}\varphi_0^4\right).
 \end{equation}
 
+<<<<<<< HEAD
 \section{
+=======
+
+>>>>>>> b235a4bf5bf5b28a2bd0a2e405f81e25856c0623
 \section{Numerické řešení}
 \label{sec:Numerické řešení}
 
@@ -76,7 +95,8 @@ V předchozích kapitolách jsme dospěli k rovnici $\eqref{pohyb}$. Vzhledem k 
 \label{rovnice}
 \boxed{\frac{\diff^{2} y}{\diff t ^{2}} + \frac{g}{l}\sin y=0},
 \end{equation}
-kde $y(t)$ je výchylka (orientovaný úhel) kyvadla v čase $t$.
+kde $y(t)$ je výchylka (orientovaný úhel) kyvadla v čase $t$. V celé této sekci budeme pracovat se základními jednotkami SI.
+
 Pokusme se nyní tuto rovnici řešit pomocí numerických metod. K tomu využijeme prostředí \textit{Mathematica}.\footnote{všechny přiložené kódy jsou napsané v Mathematica 12.02}
 Pro jednoduchost předpokládejme délku kyvadla $l=1$ \si{m}, hmotnost $m = 1$ \si{kg}, tíhové zrychlení jako $g = 9.81$ \si{m.s^{-2}}, počáteční výchylku $y(0)=y_{0}=1$ \si{rad} a čas $1$ \si{s} $\leq t \leq$ 10 \si{s}, po který budeme sledovat pohyb matematického kyvadla.
 \begin{lstlisting}[language=Mathematica, caption=Konstanty]
@@ -258,7 +278,91 @@ T= 2 \pi \sqrt{\frac{l}{g}}.
 
 Z obrázku $\eqref{fig:per}$ a z tabulky $\eqref{fig:pertab}$ je patrné, že Eulerova metoda se výrazně odlišuje od zbylých. Metody \texttt{NDSolve} a \texttt{SymplecticPartitionedRungeKutta} jsou velmi přesné, překvapivě aproximace periody $\eqref{aproxperiod}$ je také poměrně přesná, ale při vyšších počátečních výchylkách ztrácí na přesnosti. Určení periody z linearizované rovnice je možné jen pro malé počáteční výchylky řádově 0.001 \si{rad}, při vyšších výchylkách rychle ztrácí na přesnosti.
 
+\section{Analytická aproximace}
+\label{sec:Analytická aproximace}
 
+Problém s nelineární rovnicí se dá řešit i jiným způsobem. Můžeme na to jít skrze Taylorův rozvoj
+\begin{equation}
+\sin\varphi=\sum_{n=1}^{+\infty}(-1)^n\frac{\varphi^{2n+1}}{(2k+1)!}\approx\varphi-\frac{\varphi^3}{3!}+\frac{\varphi^5}{5!}+...
+\end{equation}
+Takto jsme se zbavili nelineárního členu a nahradili jsme ho polynomem. Na základě znalostí z linearizované rovnice provedeme odhad, že úhel $\varphi$ bude dán jako
+\begin{equation}
+\varphi(t)=\epsilon\varphi_A + \epsilon^2\varphi_B +\epsilon^3\varphi_C+...,
+\end{equation}
+a protože hledáme lichou funkci, vynecháme sudé členy a přepíšeme
+\begin{equation}
+\varphi(t)=\epsilon\varphi_A + \epsilon^3\varphi_B +\epsilon^5\varphi_C+....
+\end{equation}
+Frekvence $\omega$ bude vypadat takto
+\begin{equation}
+\omega^2=\omega_0^2+\epsilon^2\alpha+\epsilon^4\beta+....
+\end{equation}
+Naše rozvoje vložíme do
+\begin{equation}
+\frac{d^2\varphi}{dt^2}+\omega_0^2\sin\varphi=0,
+\end{equation}
+a získáváme
+\begin{equation}
+\frac{d^2}{dt^2}[\epsilon\varphi_A + \epsilon^3\varphi_B +...]+[\omega^2-\epsilon^2\alpha-\epsilon^4\beta+...]\left[(\epsilon\varphi_A + \epsilon^3\varphi_B +...)-\frac{(\epsilon\varphi_A + \epsilon^3\varphi_B +...)}{5!}+...\right]=0
+\end{equation}
+Zjistili jsme první členy aproximace $\varphi(t)=\epsilon\varphi_A(t) +\epsilon^3\varphi_B(t)+\epsilon^5\varphi_C(t)+...$.
+\begin{align}
+\varphi_A(t)&= \varphi_{init}\cos(\omega t),\\
+\varphi_B(t)&=\frac{\varphi_{init}^3}{192}[\cos(3\omega t)-\cos(\omega t)].
+\end{align}
+Zamíříme k třetímu členu $\varphi_C(t)$. Budeme mít počáteční podmínky ($t=0$)
+\begin{align}
+\varphi_C = 0,\\
+\frac{d\varphi_C}{dt}=0.
+\end{align}
+Jak se hledali stejné mocniny $\epsilon$ u předešlých, tak najdeme i zde. Tím získáme následující rovnici.
+\begin{equation}
+\frac{d\varphi_C}{dt}+\omega^2\varphi_C=\beta\varphi_A-\frac{\alpha\varphi_A^3}{3!}-\frac{\omega^2\varphi_A^5}{5!}+\alpha\varphi_B+\frac{1}{2}\omega^2\varphi_A^2\varphi_B.
+\end{equation}
+Nyní dosadíme $\varphi_A$ a $\varphi_B$. Proměnnou $\alpha$ už známe také ($\alpha = -\frac{\omega^2\varphi_{init}^2}{8}$). Jen upravíme celou rovnici a dostaneme výslednou rovnost.
+\begin{equation}
+\frac{d\varphi_C}{dt}+\omega^2\varphi_C=\left(\beta\varphi_{init}+\frac{5}{512}\omega^2\varphi_{init}^5\right)\cos(\omega t)+\frac{\omega^2\varphi_{init}^5}{384}\cos(3\omega t)+\frac{\omega^2\varphi_{init}^5}{7680}\cos(5\omega t)
+\end{equation}
+Víme, že člen $\left(\beta\varphi_{init}+\frac{5}{512}\omega^2\varphi_{init}^5\right)\cos(\omega t)$ nám bude způsobovat problémy. Zbavíme se ho tím, že si položíme $\beta=-\frac{5}{512}\omega^2\varphi_{init}^4$. Pak už jen diferenciální rovnici vyřešíme (počáteční podmínky máme) a dostaneme
+\begin{equation}
+\varphi_C(t)=\frac{\varphi_{init}^5}{184320}[61\cos(\omega t)-60\cos(3\omega t)-\cos(5\omega t)].
+\end{equation}
+Celková aproximace vypadá takto
+\begin{equation}
+\varphi(t)\approx\varphi_{init}\cos(\omega t)+\frac{\varphi_{init}^3}{192}[\cos(3\omega t)-\cos(\omega t)]+\frac{\varphi_{init}^5}{184320}[61\cos(\omega t)-60\cos(3\omega t)-\cos(5\omega t)]+...
+\end{equation}
+Známe i druhý člen u frekvence $\omega$
+\begin{equation}
+\omega^2\approx\omega_0^2-\frac{\omega^2\varphi_{init}^2}{8}-\frac{5}{512}\omega^2\varphi_{init}^4+...,
+\end{equation}
+přepíšeme tedy na $\omega^2\approx\frac{\omega_0^2}{1+\frac{\varphi_{init}^2}{8}+\frac{5\varphi_{init}^4}{512}}$. Dosadíme do definice periody $T$ a máme
+\begin{equation}
+T\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{\varphi_{init}^2}{16}+\frac{5\varphi_{init}^4}{1024}+...\right).
+\end{equation}
+
+\subsection{Porovnání aproximace a numerického řešení}
+\label{sec:Porovnání aproximace a numerického řešení}
+
+OBRAZek + TABulka = delka kyvadla 1 \si{m} a pocatecxni vychylka 1 \si{rad}
+
+Ze zacatku linearni dobry ale pak se rozjizdi od reseni
+
+Analyticka aproximace s SYmpletit num reseni splyva - dle tabulky se lisí v řádu $10^{-2}$
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=17cm]{figures/ZAVER1.pdf}
+  \caption{Velikost okamžité výchylky při různých typech řešení}
+  \label{fig:zav1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=17cm]{figures/ZAVER1-TAB.pdf}
+  \caption{Velikost okamžité výchylky při různých typech řešení}
+  \label{fig:zav2}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex

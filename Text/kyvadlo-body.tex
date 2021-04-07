@@ -78,6 +78,42 @@ Teď už jen ($\ref{rozvoj}$) vložíme do ($\ref{integ}$) a dostaneme:
 T=4\sqrt{\frac{l}{g}}\int_{0}^{\frac{\pi}{2}}\frac{\,d\theta}{\sqrt{1-k^2\sin^2\theta}}\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{1}{16}\varphi_0^2+\frac{11}{3072}\varphi_0^4\right).
 \end{equation}
 
+\subsection{Analytická aproximace}
+\label{sec:Analytická aproximace}
+Už jsme zjistili první členy aproximace $\varphi(t)=\epsilon\varphi_A(t) +\epsilon^3\varphi_B(t)+\epsilon^5\varphi_C(t)+...$.
+\begin{align}
+\varphi_A(t)&= \varphi_{init}\cos(\omega t),\\
+\varphi_B(t)&=\frac{\varphi_{init}^3}{192}[\cos(3\omega t)-\cos(\omega t)].
+\end{align}
+Zamíříme k třetímu členu $\varphi_C(t)$. Budeme mít počáteční podmínky ($t=0$)
+\begin{align}
+\varphi_C = 0,\\
+\frac{d\varphi_C}{dt}=0.
+\end{align}
+Jak se hledali stejné mocniny $\epsilon$ u předešlých, tak najdeme i zde. Tím získáme následující rovnici.
+\begin{equation}
+\frac{d\varphi_C}{dt}+\omega^2\varphi_C=\beta\varphi_A-\frac{\alpha\varphi_A^3}{3!}-\frac{\omega^2\varphi_A^5}{5!}+\alpha\varphi_B+\frac{1}{2}\omega^2\varphi_A^2\varphi_B.
+\end{equation}
+Teď $\varphi_A$ a $\varphi_B$ dosadíme. Proměnnou $\alpha$ už známe také ($\alpha = -\frac{\omega^2\varphi_{init}^2}{8}$). Teď už jen upravíme celou rovnici a dostaneme výslednou rovnost.
+\begin{equation}
+\frac{d\varphi_C}{dt}+\omega^2\varphi_C=\left(\beta\varphi_{init}+\frac{5}{512}\omega^2\varphi_{init}^5\right)\cos(\omega t)+\frac{\omega^2\varphi_{init}^5}{384}\cos(3\omega t)+\frac{\omega^2\varphi_{init}^5}{7680}\cos(5\omega t)
+\end{equation}
+Víme, že člen $\left(\beta\varphi_{init}+\frac{5}{512}\omega^2\varphi_{init}^5\right)\cos(\omega t)$ nám bude způsobovat problémy. Zbavíme se ho tím, že si položíme $\beta=-\frac{5}{512}\omega^2\varphi_{init}^4$. Pak už jen diferenciální rovnici vyřešíme (počáteční podmínky máme) a dostaneme
+\begin{equation}
+\varphi_C(t)=\frac{\varphi_{init}^5}{184320}[61\cos(\omega t)-60\cos(3\omega t)-\cos(5\omega t)].
+\end{equation}
+Celková aproximace teď vypadá takto
+\begin{equation}
+\varphi(t)\approx\varphi_{init}\cos(\omega t)+\frac{\varphi_{init}^3}{192}[\cos(3\omega t)-\cos(\omega t)]+\frac{\varphi_{init}^5}{184320}[61\cos(\omega t)-60\cos(3\omega t)-\cos(5\omega t)]+...
+\end{equation}
+Známe teď i druhý člen u frekvence $\omega$
+\begin{equation}
+\omega^2\approx\omega_0^2-\frac{\omega^2\varphi_{init}^2}{8}-\frac{5}{512}\omega^2\varphi_{init}^4+...,
+\end{equation}
+přepíšeme tedy na $\omega^2\approx\frac{\omega_0^2}{1+\frac{\varphi_{init}^2}{8}+\frac{5\varphi_{init}^4}{512}}$. Dosadíme do definice periody $T$ a máme
+\begin{equation}
+T\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{\varphi_{init}^2}{16}+\frac{5\varphi_{init}^4}{1024}+...\right).
+\end{equation}
 \section{Numerické řešení}
 \label{sec:Numerické řešení}
 

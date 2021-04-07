@@ -277,6 +277,30 @@ Z obrázku $\eqref{fig:per}$ a z tabulky $\eqref{fig:pertab}$ je patrné, že Eu
 \section{Analytická aproximace}
 \label{sec:Analytická aproximace}
 
+Problém s nelineární rovnicí se dá řešit i jiným způsobem. Můžeme na to jít skrze Taylorův rozvoj
+\begin{equation}
+\sin\varphi=\sum_{n=1}^{+\infty}(-1)^n\frac{\varphi^{2n+1}}{(2k+1)!}\approx\varphi-\frac{\varphi^3}{3!}+\frac{\varphi^5}{5!}+...
+\end{equation}
+Takto jsme se zbavili nelineárního členu a nahradili jsme ho polynomem. Na základě znalostí z linearizované rovnice provedeme odhad, že úhel $\varphi$ bude dán jako
+\begin{equation}
+\varphi(t)=\epsilon\varphi_A + \epsilon^2\varphi_B +\epsilon^3\varphi_C+...,
+\end{equation}
+a protože hledáme lichou funkci, vynecháme sudé členy a přepíšeme
+\begin{equation}
+\varphi(t)=\epsilon\varphi_A + \epsilon^3\varphi_B +\epsilon^5\varphi_C+....
+\end{equation}
+Frekvence $\omega$ bude vypadat takto
+\begin{equation}
+\omega^2=\omega_0^2+\epsilon^2\alpha+\epsilon^4\beta+....
+\end{equation}
+Naše rozvoje vložíme do
+\begin{equation}
+\frac{d^2\varphi}{dt^2}+\omega_0^2\sin\varphi=0,
+\end{equation}
+a získáváme
+\begin{equation}
+\frac{d^2}{dt^2}[\epsilon\varphi_A + \epsilon^3\varphi_B +...]+[\omega^2-\epsilon^2\alpha-\epsilon^4\beta+...]\left[(\epsilon\varphi_A + \epsilon^3\varphi_B +...)-\frac{(\epsilon\varphi_A + \epsilon^3\varphi_B +...)}{5!}+...\right]=0
+\end{equation}
 Zjistili jsme první členy aproximace $\varphi(t)=\epsilon\varphi_A(t) +\epsilon^3\varphi_B(t)+\epsilon^5\varphi_C(t)+...$.
 \begin{align}
 \varphi_A(t)&= \varphi_{init}\cos(\omega t),\\

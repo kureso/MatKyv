@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\begin {multicols}{2}
+\contentsline {section}{\tocsection {}{1}{Úvod}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{}{Pohybová rovnice}}{1}{section*.1}%
+\contentsline {section}{\tocsection {}{2}{Perioda oscilací}}{1}{section.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Eliptický integrál}}{1}{subsection.2.1}%
+\end {multicols}

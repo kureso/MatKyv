@@ -35,6 +35,13 @@ Periodě matematického kyvadla při malých výchylkách pak odpovídá
 T=2\pi\sqrt{\frac{l}{g}}.
 \end{equation}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{figures/KYVADLO.eps}
+  \caption{Matematické kyvadlo}
+  \label{fig:per}
+\end{figure}
+
 \section{Eliptický integrál}
 \label{sec:Eliptický integrál}
 Eliptický integrál nám poskytuje exaktní řešení nelinearizované rovnice ($\ref{pohyb}$). Když rovnici ($\ref{pohyb}$) vynásobíme $\frac{d\varphi}{dt}$, tak získáme:
@@ -84,7 +91,8 @@ V předchozích kapitolách jsme dospěli k rovnici $\eqref{pohyb}$. Vzhledem k 
 \label{rovnice}
 \boxed{\frac{\diff^{2} y}{\diff t ^{2}} + \frac{g}{l}\sin y=0},
 \end{equation}
-kde $y(t)$ je výchylka (orientovaný úhel) kyvadla v čase $t$.
+kde $y(t)$ je výchylka (orientovaný úhel) kyvadla v čase $t$. V celé této sekci budeme pracovat se základními jednotkami SI.
+
 Pokusme se nyní tuto rovnici řešit pomocí numerických metod. K tomu využijeme prostředí \textit{Mathematica}.\footnote{všechny přiložené kódy jsou napsané v Mathematica 12.02}
 Pro jednoduchost předpokládejme délku kyvadla $l=1$ \si{m}, hmotnost $m = 1$ \si{kg}, tíhové zrychlení jako $g = 9.81$ \si{m.s^{-2}}, počáteční výchylku $y(0)=y_{0}=1$ \si{rad} a čas $1$ \si{s} $\leq t \leq$ 10 \si{s}, po který budeme sledovat pohyb matematického kyvadla.
 \begin{lstlisting}[language=Mathematica, caption=Konstanty]
@@ -303,6 +311,20 @@ přepíšeme tedy na $\omega^2\approx\frac{\omega_0^2}{1+\frac{\varphi_{init}^2}
 \begin{equation}
 T\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{\varphi_{init}^2}{16}+\frac{5\varphi_{init}^4}{1024}+...\right).
 \end{equation}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=17cm]{figures/ZAVER1.pdf}
+  \caption{Velikost okamžité výchylky při různých typech řešení}
+  \label{fig:per}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=17cm]{figures/ZAVER1-TAB.pdf}
+  \caption{Velikost okamžité výchylky při různých typech řešení}
+  \label{fig:per}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex

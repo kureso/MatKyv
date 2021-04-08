@@ -325,6 +325,7 @@ Víme, že člen $\left(\beta\varphi_{init}+\frac{5}{512}\omega^2\varphi_{init}^
 \end{equation}
 Celková aproximace vypadá takto
 \begin{equation}
+\label{approx}
 \varphi(t)\approx\varphi_{init}\cos(\omega t)+\frac{\varphi_{init}^3}{192}[\cos(3\omega t)-\cos(\omega t)]+\frac{\varphi_{init}^5}{184320}[61\cos(\omega t)-60\cos(3\omega t)-\cos(5\omega t)]+...
 \end{equation}
 Známe i druhý člen u frekvence $\omega$
@@ -338,13 +339,13 @@ T\approx2\pi\sqrt{\frac{l}{g}}\left(1+\frac{\varphi_{init}^2}{16}+\frac{5\varphi
 
 \subsection{Porovnání aproximace a numerického řešení}
 \label{sec:Porovnání aproximace a numerického řešení}
-
-OBRAZek + TABulka = delka kyvadla 1 \si{m} a pocatecxni vychylka 1 \si{rad}
-
-Ze zacatku linearni dobry ale pak se rozjizdi od reseni
-
-Analyticka aproximace s SYmpletit num reseni splyva - dle tabulky se lisí v řádu $10^{-2}$
-
+Parametry použité při porovnání jsme si nastavili takto
+\begin{align}
+g &= 9.81 \: \si{m^2}·\si{s^{-1}}, \\
+l &= 1 \: \si{m}, \\
+\varphi_0 &= 1 \: \si{rad}.
+\end{align}
+Na grafech $\ref{fig:zav1}$ můžeme vidět, že průběhy analytické aproximace a numerického řešení skoro splývají. Z tabulky $\ref{fig:zav2}$ vyčteme, že hodnoty se liší v řádu $10^{-2}$. Analytická aproximace je tedy velmi dobrá, i když se určilo jen prvních pár členů. (Použili jsme aproximaci ($\ref{approx}$).) Pro srovnání jsme se koukli i na linearizované řešení se stejně nastavenými parametry. V počátečních hodnotách jsou si všechna řešení velmi podobná, ale už po první půl periodě se začne linearizované řešení znatelně lišit.
 
 \begin{figure}[h]
   \centering

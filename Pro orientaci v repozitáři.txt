@@ -1,0 +1,2 @@
+V souboru Text je všechno týkající se pdf souboru. Dokument, který byl promítán, se jmenuje MatKyv.pdf.
+Notebooky z Mathematicy v main mají v sobě výpočty týkající se naší práce.
